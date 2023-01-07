@@ -5,6 +5,7 @@ def jogar():
 	
 	palavra_secreta = carregar_palavra_secreta()
 	letras_acertadas = inicializar_letras_acertadas(palavra_secreta)
+	chutes = []
 	print(letras_acertadas)
 
 	enforcou = False
@@ -14,15 +15,22 @@ def jogar():
 	while not enforcou and not acertou:
 		chute = chutar_letra()
 
-		if chute in palavra_secreta:
-			verificar_chute(chute, letras_acertadas, palavra_secreta)
-		else:
-			erros += 1
-			print(f"Você errou. Você ainda tem {6-erros} chance(s)")
+		if chute not in chutes:
+			if chute in palavra_secreta:
+				verificar_chute(chute, letras_acertadas, palavra_secreta)
+				salvar_chute(chutes, chute)
+				print("Seus chutes foram: ", chutes)
+			else:
+				erros += 1
+				salvar_chute(chutes, chute)
+				print(f"Você errou. Você ainda tem {6-erros} chance(s).")
+				print("Seus chutes foram: ", chutes)
 
-		enforcou = erros == 6
-		acertou = "_" not in letras_acertadas
-		print(letras_acertadas)
+			enforcou = erros == 6
+			acertou = "_" not in letras_acertadas
+			print(letras_acertadas)
+		else:
+			print(f"Você já jogou a letra {chute}, escolha outra.")
 	
 	if acertou:
 		imprimir_mensagem_vitoria(erros)
@@ -50,6 +58,9 @@ def carregar_palavra_secreta():
 def inicializar_letras_acertadas(palavra):
 	return ["_" for letra in palavra]
 
+def salvar_chute(chutes, chute):
+	chutes.append(chute)
+
 def chutar_letra():
 	chute = input("Digite uma letra: ")
 	return chute.strip().upper()
@@ -63,7 +74,7 @@ def verificar_chute(chute, letras_acertadas, palavra_secreta):
 		index += 1
 
 def imprimir_mensagem_vitoria(erros):
-	print(f"Parabéns! Você ganhou a partida com {erros} erros")
+	print(f"Parabéns! Você ganhou a partida com {erros} erros.")
 
 def imprimir_mensagem_derrota(palavra_secreta):
 	print(f"Você perdeu! A palavra era: {palavra_secreta}")
