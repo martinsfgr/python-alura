@@ -9,4 +9,4 @@ def saca(conta, valor):
     conta["saldo"] -= valor
 
 def extrato(conta):
-    print(f"Saldo {}".format(conta["saldo"]))
+    print("Saldo {}".format(conta["saldo"]))
