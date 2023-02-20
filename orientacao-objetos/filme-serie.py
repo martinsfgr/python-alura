@@ -8,7 +8,7 @@ class Programa:
     def likes(self):
         return self._likes
 
-    def dar_likes(self):
+    def dar_like(self):
         self._likes += 1
 
     @property
@@ -33,7 +33,14 @@ class Serie(Programa):
 
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
-print(vingadores.nome)
+print(f"Nome: {vingadores.nome} - Ano: {vingadores.ano} - Duração: {vingadores.duracao} - Likes: {vingadores.likes}")
 
 atlanta = Serie('atlanta', 2018, 2)
-print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano}')
+atlanta.dar_like()
+print(f"Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporadas: {atlanta.temporadas} - Likes: {atlanta.likes}")
+
+filmes_e_series = [vingadores, atlanta]
+
+for programa in filmes_e_series:
+    detalhe = programa.duracao if hasattr(programa, "duracao") else programa.temporadas
+    print(f"{programa.nome} - {programa.ano} - {detalhe} - {programa.likes}")
