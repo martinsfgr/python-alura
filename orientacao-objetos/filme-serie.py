@@ -46,14 +46,12 @@ class Playlist:
     def __getitem__(self, item):
         return self._programas[item]
 
+    def __len__(self):
+        return len(self._programas)
+
     @property
     def listagem(self):
         return self._programas
-    
-    @property
-    def tamanho(self):
-        return len(self._programas)
-
 
 carros = Filme('carros', 2008, 120)
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
@@ -67,12 +65,12 @@ atlanta.dar_like()
 filmes_e_series = [vingadores, atlanta, carros, demolidor]
 playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series)
 
-for programa in filmes_e_series:
+#for programa in filmes_e_series:
     #detalhe = programa.duracao if hasattr(programa, "duracao") else programa.temporadas
     #print(f"{programa.nome} - {programa.ano} - {detalhe} - {programa.likes}") *sem o polimorfismo
-    print(programa)
+    #print(programa)
 
-print(f"Tamanho da playlist: {playlist_fim_de_semana.tamanho}")
+print(f"Tamanho da playlist: {len(playlist_fim_de_semana)}")
 
 for programa in playlist_fim_de_semana:
     print(programa)
