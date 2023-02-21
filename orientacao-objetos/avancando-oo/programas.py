@@ -65,10 +65,9 @@ atlanta.dar_like()
 filmes_e_series = [vingadores, atlanta, carros, demolidor]
 playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series)
 
-#for programa in filmes_e_series:
-    #detalhe = programa.duracao if hasattr(programa, "duracao") else programa.temporadas
-    #print(f"{programa.nome} - {programa.ano} - {detalhe} - {programa.likes}") *sem o polimorfismo
-    #print(programa)
+for programa in filmes_e_series:
+    detalhe = programa.duracao if hasattr(programa, "duracao") else programa.temporadas
+    print(f"{programa.nome} - {programa.ano} - {detalhe} - {programa.likes}")
 
 print(f"Tamanho da playlist: {len(playlist_fim_de_semana)}")
 
