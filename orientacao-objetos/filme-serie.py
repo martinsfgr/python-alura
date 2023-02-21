@@ -35,17 +35,36 @@ class Serie(Programa):
         self.temporadas = temporadas
 
     def __str__(self):
-        return f"Filme: {self._nome}, Ano: {self.ano}, Duração: {self.temporadas} minutos, Likes: {self._likes}"
+        return f"Série: {self._nome}, Ano: {self.ano}, Duração: {self.temporadas} minutos, Likes: {self._likes}"
 
+
+class Playlist(list):
+    def __init__(self, nome, programas):
+        super().__init__(programas)
+        self.nome = nome
+
+
+carros = Filme('carros', 2008, 120)
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
-
+demolidor = Serie('demolidor', 2016, 2)
 atlanta = Serie('atlanta', 2018, 2)
+
+carros.dar_like()
+carros.dar_like()
 atlanta.dar_like()
 
-filmes_e_series = [vingadores, atlanta]
+filmes_e_series = [vingadores, atlanta, carros, demolidor]
+
+playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series)
 
 for programa in filmes_e_series:
     #detalhe = programa.duracao if hasattr(programa, "duracao") else programa.temporadas
     #print(f"{programa.nome} - {programa.ano} - {detalhe} - {programa.likes}")
-
     print(programa)
+
+print(f"Tamanho da playlist: {len(playlist_fim_de_semana)}")
+
+for programa in playlist_fim_de_semana:
+    print(programa)
+
+print(demolidor in playlist_fim_de_semana)
